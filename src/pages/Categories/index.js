@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  WomenWrapper,
+  CategoriesWrapper,
   Heading,
   Image,
   ProductCard,
@@ -8,10 +8,10 @@ import {
   Name,
   Price,
   NamePriceWraper,
-} from "./WomenStyle";
-import Layout from "../../Layout.js";
+} from "./CategoriesStyle";
+import Layout from "../../Layout.js/index.js";
 
-export default class Women extends React.Component {
+export default class Categories extends React.Component {
   data = [
     {
       img: "/images/Image3.png",
@@ -50,7 +50,7 @@ export default class Women extends React.Component {
     return (
       <Layout>
         <Heading>Categories</Heading>
-        <WomenWrapper>
+        <CategoriesWrapper>
           {this.data.map(({ img, name, price }, index) => {
             return (
               <ProductCard>
@@ -64,7 +64,7 @@ export default class Women extends React.Component {
               </ProductCard>
             );
           })}
-        </WomenWrapper>
+        </CategoriesWrapper>
       </Layout>
     );
   }

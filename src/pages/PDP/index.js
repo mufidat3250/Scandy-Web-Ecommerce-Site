@@ -2,50 +2,59 @@ import React from "react";
 import Layout from "../../Layout.js/index.js";
 import Button from "../../atom/Button/index.js";
 import {
-  CartWrapper,
-  CartImage,
+  PDPWrapper,
+  PDPImage,
   PriceDetail,
   PriceDetailHeading,
   PriceDetailSubtitle,
-  SizeContainer,
-  SizeHeading,
-  SizeCategories,
   ColorWrapper,
   ColorBox,
   Title,
   ColorContainer,
-  SizeBox,
   Price,
   Value,
-} from "./CartStyle";
-let size = ["XS", "S", "M", "L"];
+  ButtonContainer,
+  Description,
+  ImageListing,
+  ImageModel,
+} from "./PDPStyle";
+import SizeBox from "../../atom/SizeBox";
 let colors = [
   "rgba(211, 210, 213, 1)",
   "rgba(43, 43, 43, 1)",
   "rgba(15, 100, 80, 1)",
 ];
+let size = ["XS", "S", "M", "L"];
+let imageListing = [
+  {
+    image: "/images/Image3.png",
+  },
+  {
+    image: "/images/Image3.png",
+  },
+  {
+    image: "/images/Image3.png",
+  },
+];
 export default class Kids extends React.Component {
   render() {
     return (
       <Layout>
-        <CartWrapper>
-          <CartImage></CartImage>
+        <PDPWrapper>
+          <PDPImage>
+            <ImageListing>
+              {imageListing.map(({ image }, index) => {
+                return <img src={image} className="img" alt="" />;
+              })}
+            </ImageListing>
+            <ImageModel>
+              <img src="/images/Image3.png" alt="" className="imgModel" />
+            </ImageModel>
+          </PDPImage>
           <PriceDetail>
             <PriceDetailHeading>Apollo</PriceDetailHeading>
             <PriceDetailSubtitle>Running Short</PriceDetailSubtitle>
-            <SizeContainer>
-              <SizeHeading>Size:</SizeHeading>
-              <SizeCategories>
-                {size.map((size, index) => {
-                  console.log(index);
-                  return (
-                    <SizeBox className={`${index === 1 ? "active" : ""}`}>
-                      {size}
-                    </SizeBox>
-                  );
-                })}
-              </SizeCategories>
-            </SizeContainer>
+            <SizeBox size={size} />
             <ColorWrapper>
               <Title> COLOR:</Title>
               <ColorContainer>
@@ -65,11 +74,18 @@ export default class Kids extends React.Component {
               <Title>Price:</Title>
               <Value>$50.00</Value>
             </Price>
-            <div>
-              <Button>ADD TO CART</Button>
-            </div>
+            <ButtonContainer>
+              <Button bgColor="rgba(94, 206, 123, 1)" color={"white"}>
+                ADD TO CART
+              </Button>
+            </ButtonContainer>
+            <Description>
+              Find stunning women's cocktail dresses and party dresses. Stand
+              out in lace and metallic cocktail dresses and party dresses from
+              all your favorite brands.
+            </Description>
           </PriceDetail>
-        </CartWrapper>
+        </PDPWrapper>
       </Layout>
     );
   }

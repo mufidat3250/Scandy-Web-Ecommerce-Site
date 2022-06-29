@@ -1,7 +1,7 @@
 import styled from "styled-components";
-export const WomenWrapper = styled.div`
+export const CategoriesWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(22.125rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(22.125rem, 1fr));
   gap: 2.5rem;
 `;
 export const Heading = styled.h1`
@@ -30,13 +30,14 @@ export const NamePriceWraper = styled.div`
   background-color: yellow;
 `;
 export const Name = styled.p`
-font-size: 1.125rem;
-font-weight: 300;
-margin: 0;
-line-height: 1.5;
+  font-size: 1.125rem;
+  font-weight: 300;
+  margin: 0;
+  line-height: 1.5;
 `;
 export const Price = styled.span`
-font-size: 1.125rem;
-font-weight: 500;
-line-height: 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.5rem;
 `;
+

@@ -1,16 +1,19 @@
 import styled from "styled-components";
 
-export const CartWrapper = styled.div`
+export const PDPWrapper = styled.div`
   display: grid;
   grid-template-columns: 2fr 1.2fr;
   grid-gap: 6.25rem;
   margin-top: 5rem;
 `;
 export const PriceDetail = styled.div`
-  /* display: ; */
   margin-bottom: 2.6875rem;
 `;
-export const CartImage = styled.div``;
+export const PDPImage = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 2.5rem;
+`;
 export const PriceDetailHeading = styled.p`
   font-size: 1.875rem;
   font-weight: 600;
@@ -23,29 +26,7 @@ export const PriceDetailSubtitle = styled.p`
   font-weight: 400;
   margin-top: 1rem;
 `;
-export const SizeContainer = styled.div``;
-export const SizeHeading = styled.div`
-  font-size: 1.125rem;
-  font-weight: 700;
-  font-family: "Roboto Condensed";
-`;
-export const SizeCategories = styled.div`
-  display: flex;
-  margin-top: 0.5rem;
-`;
-export const SizeBox = styled.div`
-  width: 3.9375rem;
-  border: 1px solid #1d1f22;
-  height: 2.8125rem;
-  margin-right: 0.75rem;
-  display: grid;
-  place-items: center;
 
-  &.active {
-    background-color: black;
-    color: white;
-  }
-`;
 export const ColorWrapper = styled.div`
   margin-top: 1.5rem;
   margin-bottom: 2.25rem;
@@ -80,3 +61,32 @@ export const Value = styled.div`
   font-family: "Raleway";
   line-height: 0.75;
 `;
+export const ButtonContainer = styled.div`
+  width: 18.25rem;
+`;
+export const ImageListing = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: fit-content;
+  .img {
+    height: 5rem;
+    width: 5rem;
+  }
+`;
+export const ImageModel = styled.div`
+  height: 31.937rem;
+
+  .imgModel {
+    width: 100%;
+    height: 100%;
+    object-position: inherit;
+  }
+`;
+export const Description = styled.p`
+  max-width: 18.25rem;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 1rem;
+`;
+
