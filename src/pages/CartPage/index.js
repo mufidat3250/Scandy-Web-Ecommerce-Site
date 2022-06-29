@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../../Layout.js/index.js";
+import Button from "../../atom/Button/index.js";
 import {
   CartWrapper,
   CartImage,
@@ -11,12 +12,11 @@ import {
   SizeCategories,
   ColorWrapper,
   ColorBox,
-  ColorTitle,
+  Title,
   ColorContainer,
   SizeBox,
   Price,
-  PriceHeading,
-  Value
+  Value,
 } from "./CartStyle";
 let size = ["XS", "S", "M", "L"];
 let colors = [
@@ -47,7 +47,7 @@ export default class Kids extends React.Component {
               </SizeCategories>
             </SizeContainer>
             <ColorWrapper>
-              <ColorTitle> COLOR:</ColorTitle>
+              <Title> COLOR:</Title>
               <ColorContainer>
                 {colors.map((color, index) => {
                   return (
@@ -62,9 +62,12 @@ export default class Kids extends React.Component {
               </ColorContainer>
             </ColorWrapper>
             <Price>
-              <PriceHeading>Price:</PriceHeading>
+              <Title>Price:</Title>
               <Value>$50.00</Value>
             </Price>
+            <div>
+              <Button>ADD TO CART</Button>
+            </div>
           </PriceDetail>
         </CartWrapper>
       </Layout>

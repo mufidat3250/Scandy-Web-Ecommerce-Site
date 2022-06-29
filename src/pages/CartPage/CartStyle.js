@@ -50,7 +50,7 @@ export const ColorWrapper = styled.div`
   margin-top: 1.5rem;
   margin-bottom: 2.25rem;
 `;
-export const ColorTitle = styled.h1`
+export const Title = styled.h1`
   font-size: 1.125rem;
   font-weight: 700;
   font-family: "Roboto Condensed";
@@ -69,9 +69,14 @@ export const ColorBox = styled.div`
 `;
 
 export const Price = styled.div`
-
+  margin-bottom: 1.25rem;
 `;
-export const PriceHeading = styled.h1`
-font-family: 'Roboto Condenced';
+export const PriceHeading = styled.p`
+  font-family: "Roboto Condensed";
 `;
-export const Value = styled.div``;
+export const Value = styled.div`
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: "Raleway";
+  line-height: 0.75;
+`;
