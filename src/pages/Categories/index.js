@@ -53,7 +53,7 @@ export default class Categories extends React.Component {
         <CategoriesWrapper>
           {this.data.map(({ img, name, price }, index) => {
             return (
-              <ProductCard>
+              <ProductCard key={`categories${index}`}>
                 <CartImageWrapper>
                   <Image src={img} />
                 </CartImageWrapper>

@@ -8,4 +8,5 @@ export const LayoutWrapper = styled.div`
 export const Main = styled.main`
   overflow-y: auto;
   height: 100%;
+  position: relative;
 `;

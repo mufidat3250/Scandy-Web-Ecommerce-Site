@@ -8,6 +8,7 @@ export const NavWrapper = styled.div`
 export const TabContent = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 export const TabContainer = styled.p`
   padding-left: 1rem;

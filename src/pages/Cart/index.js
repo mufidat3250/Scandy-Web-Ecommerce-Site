@@ -1,6 +1,16 @@
 import React from "react";
 import Layout from "../../Layout.js/index.js";
-import { CartWrapper, CartHeading } from "./CartStyle";
+import { ColorBox } from "../../atom/ColorBox/ColorBoxStyle.js";
+import {
+  CartWrapper,
+  CartHeading,
+  CartTilte,
+  CartSubtitle,
+  CartPrice,
+  BoxTitle,
+  ColorContainer,
+} from "./CartStyle";
+import Size from "../../atom/SizeBox";
 
 let cartitem = [
   {
@@ -37,12 +47,44 @@ export default class Men extends React.Component {
           <CartWrapper>
             {cartitem.map((item, index) => {
               return (
-                <div className="cartItem">
-                  <h1>{item.title}</h1>
-                  <p>{item.description}</p>
-                  <p>{item.price}</p>
-                  <div>
-                      
+                <div
+                  className={`cartItem ${
+                    index === cartitem.length - 1 ? "lastCart" : ""
+                  }`}
+                  key={`cartItems ${index}`}
+                >
+                  <div className="cart">
+                    <div>
+                      <CartTilte>{item.title}</CartTilte>
+                      <CartSubtitle>{item.description}</CartSubtitle>
+                      <CartPrice>{item.price}</CartPrice>
+                      <BoxTitle>Size:</BoxTitle>
+                      <Size size={item.size} />
+                      <BoxTitle>Color:</BoxTitle>
+                      <ColorContainer>
+                        {item.color.map((color, index) => {
+                          return (
+                            <ColorBox
+                              color={color}
+                              key={index}
+                              border_color={
+                                index === 0 ? "rgba(94, 206, 123, 1)" : ""
+                              }
+                            ></ColorBox>
+                          );
+                        })}
+                      </ColorContainer>
+                    </div>
+                    <div className="carosel-wrapper">
+                      <div className="add-subtract-wrapper">
+                        <div className="box">+</div>
+                        <div className="value">1</div>
+                        <div className="box">-</div>
+                      </div>
+                      <div className="Carosel">
+                        <img src={item.image} alt="" className="img" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               );

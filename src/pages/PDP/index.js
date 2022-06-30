@@ -7,17 +7,15 @@ import {
   PriceDetail,
   PriceDetailHeading,
   PriceDetailSubtitle,
-  ColorWrapper,
-  ColorBox,
-  Title,
-  ColorContainer,
   Price,
+  Title,
   Value,
   ButtonContainer,
   Description,
   ImageListing,
   ImageModel,
 } from "./PDPStyle";
+import ColorBox from "../../atom/ColorBox/index.js";
 import SizeBox from "../../atom/SizeBox";
 let colors = [
   "rgba(211, 210, 213, 1)",
@@ -44,7 +42,14 @@ export default class Kids extends React.Component {
           <PDPImage>
             <ImageListing>
               {imageListing.map(({ image }, index) => {
-                return <img src={image} className="img" alt="" />;
+                return (
+                  <img
+                    src={image}
+                    key={`image${index}`}
+                    className="img"
+                    alt=""
+                  />
+                );
               })}
             </ImageListing>
             <ImageModel>
@@ -54,22 +59,8 @@ export default class Kids extends React.Component {
           <PriceDetail>
             <PriceDetailHeading>Apollo</PriceDetailHeading>
             <PriceDetailSubtitle>Running Short</PriceDetailSubtitle>
-            <SizeBox size={size} />
-            <ColorWrapper>
-              <Title> COLOR:</Title>
-              <ColorContainer>
-                {colors.map((color, index) => {
-                  return (
-                    <ColorBox
-                      color={color}
-                      border_color={` ${
-                        index === 0 ? "rgba(94, 206, 123, 1)" : ""
-                      }`}
-                    ></ColorBox>
-                  );
-                })}
-              </ColorContainer>
-            </ColorWrapper>
+            {/* <SizeBox size={size} /> */}
+            {/* <ColorBox colors={colors} /> */}
             <Price>
               <Title>Price:</Title>
               <Value>$50.00</Value>

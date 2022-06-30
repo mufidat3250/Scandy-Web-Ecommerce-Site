@@ -9,7 +9,7 @@ export default class SizeBox extends Component {
   render() {
     return (
       <SizeContainer>
-        <SizeHeading>Size:</SizeHeading>
+        {/* <SizeHeading>Size:</SizeHeading> */}
         <SizeCategories>
           {this.props.size.map((item, index) => (
             <Box
