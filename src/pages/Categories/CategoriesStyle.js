@@ -16,6 +16,12 @@ export const ProductCard = styled.div``;
 export const CartImageWrapper = styled.div`
   /* padding: 1rem; */
   margin: 1rem;
+  position: relative;
+
+  .Add-to-cart {
+    background-color: green;
+    position: absolute;
+  }
 `;
 export const Image = styled.img`
   width: 100%;

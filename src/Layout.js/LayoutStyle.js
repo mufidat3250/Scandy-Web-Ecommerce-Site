@@ -9,4 +9,5 @@ export const Main = styled.main`
   overflow-y: auto;
   height: 100%;
   position: relative;
+  width: 100%;
 `;

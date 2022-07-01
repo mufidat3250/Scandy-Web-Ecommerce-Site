@@ -12,7 +12,7 @@ import {
 } from "./CartStyle";
 import Size from "../../atom/SizeBox";
 
-let cartitem = [
+export const cartitem = [
   {
     title: "Apollo",
     description: "Running Short",

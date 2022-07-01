@@ -56,6 +56,9 @@ export default class Categories extends React.Component {
               <ProductCard key={`categories${index}`}>
                 <CartImageWrapper>
                   <Image src={img} />
+                  <div className="Add-to-cart">
+                    <img src="vectors/Group1.svg" alt="" />
+                  </div>
                 </CartImageWrapper>
                 <NamePriceWraper>
                   <Name>{name}</Name>

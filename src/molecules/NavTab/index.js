@@ -8,8 +8,17 @@ import {
   DropDownContainer,
 } from "./NavTabStyle";
 import { Overlay } from "../../atom/Overlay";
-import { DropDown } from "../../atom/DropDown/DropDownStyle";
-
+import {
+  DropDown,
+  DropDownWrapper,
+  Heading,
+  DropDownBody,
+  ColorBox,
+  Carosel,
+  Total,
+  DropDownButton,
+} from "../../atom/DropDown/DropDownStyle";
+import Button from "../../atom/Button";
 let navTab = [
   {
     title: "Women",
@@ -24,6 +33,33 @@ let navTab = [
     link: "/kids",
   },
 ];
+
+const cartitem = [
+  {
+    title: "Apollo",
+    description: "Running Short",
+    price: "$50.00",
+    size: ["XS", "S", "M", "L"],
+    color: [
+      "rgba(211, 210, 213, 1)",
+      "rgba(43, 43, 43, 1)",
+      "rgba(15, 100, 80, 1)",
+    ],
+    image: "/images/dropDownImg.png",
+  },
+  {
+    title: "jupiter",
+    description: "wayfarer",
+    price: "$75.00",
+    size: ["S", "M"],
+    color: [
+      "rgba(211, 210, 213, 1)",
+      "rgba(43, 43, 43, 1)",
+      "rgba(15, 100, 80, 1)",
+    ],
+    image: "/images/dropDownImg.png",
+  },
+];
 export default class Nav extends React.Component {
   constructor(props) {
     super(props);
@@ -33,18 +69,18 @@ export default class Nav extends React.Component {
       modal: false,
     };
     this.handleClick = this.handleClick.bind(this);
-    // this.DropDown = this.DropDown.bind(this);
+    this.handleDropDown = this.handleDropDown.bind(this);
   }
   handleClick() {
     this.setState((state) => {
-      if (state.overlay === true) {
-        console.log("true");
-        return { overlay: false };
-      }
+      console.log(state);
       if (state.overlay === false) {
-        console.log("false");
+        return { overlay: true, modal: true };
+      }
+      if (state.overlay === true) {
         return {
-          overlay: true,
+          overlay: false,
+          modal: false,
         };
       }
     });
@@ -77,10 +113,76 @@ export default class Nav extends React.Component {
             </div>
           </DropDownContainer>
         </NavWrapper>
-
-        <DropDown onclick={this.DropDown}>
-          <div className="">My Bag, 3 items</div>
-        </DropDown>
+        {this.state.overlay && (
+          <DropDown
+            onclick={this.state.handleDropDown}
+            modal={this.state.modal}
+          >
+            <DropDownWrapper>
+              <Heading>
+                <strong>My Bag,</strong> 3 items
+              </Heading>
+              <DropDownBody>
+                {cartitem.map((item, index) => {
+                  return (
+                    <div className="itemContainer">
+                      <div className="itemDiscription">
+                        <div>
+                          <h1>Apollo Running Short</h1>
+                          <p className="price">$50.00</p>
+                          <p className="title">Size</p>
+                          <div className="size-container">
+                            {item.size.map((size, index) => {
+                              return (
+                                <div className="SizeBox" key={index}>
+                                  {size}
+                                </div>
+                              );
+                            })}
+                          </div>
+                          <p className="title">Color</p>
+                          <div className="color-box-container">
+                            {item.color.map((item, index) => {
+                              return (
+                                <ColorBox
+                                  backround_color={item}
+                                  className="color-box"
+                                  key={index}
+                                ></ColorBox>
+                              );
+                            })}
+                          </div>
+                        </div>
+                        <div className="add-subtract-wrapper">
+                          <div className="box">+</div>
+                          <div className="value">1</div>
+                          <div className="box">-</div>
+                        </div>
+                      </div>
+                      <Carosel className="carosel-wrapper">
+                        <div className="Carosel">
+                          <img src={item.image} alt="" className="img" />
+                        </div>
+                      </Carosel>
+                    </div>
+                  );
+                })}
+              </DropDownBody>
+              <Total>
+                <p className="total">Total</p>
+                <p className="value">$200.00</p>
+              </Total>
+              <DropDownButton>
+                <Button color="black" border_color="black" bgColor="white">
+                  View bag
+                </Button>
+                <Button color="white" bgColor="#5ECE7B">
+                  CHECK OUT
+                </Button>
+              </DropDownButton>
+            </DropDownWrapper>
+          </DropDown>
+        )}
       </>
     );
   }
