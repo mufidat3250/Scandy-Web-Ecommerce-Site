@@ -19,6 +19,11 @@ import {
   DropDownButton,
 } from "../../atom/DropDown/DropDownStyle";
 import Button from "../../atom/Button";
+import { connect } from "react-redux";
+import {
+  changeCategories,
+  selectedCategories,
+} from "../../store/reducers/actions";
 let navTab = [
   {
     title: "Women",
@@ -60,16 +65,18 @@ const cartitem = [
     image: "/images/dropDownImg.png",
   },
 ];
-export default class Nav extends React.Component {
+class Nav extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       overlay: false,
       modal: false,
+      currencyDropDown: false,
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleDropDown = this.handleDropDown.bind(this);
+    this.handleCurrencyDropDown = this.handleCurrencyDropDown.bind(this);
   }
   handleClick() {
     this.setState((state) => {
@@ -91,22 +98,47 @@ export default class Nav extends React.Component {
     });
   }
 
+  handleCurrencyDropDown() {
+    this.state(() => {});
+  }
+
+  componentDidMount() {
+    this.props.getCategories(navTab);
+  }
+
   render() {
+    console.log(this.props);
     return (
       <>
         {this.state.overlay && <Overlay />}
         <NavWrapper>
           <TabContent>
             {navTab.map(({ title, link }, index) => (
-              <StyledLink to={link} key={`navindex-${index}`} className={``}>
-                <TabContainer>{title}</TabContainer>
+              <StyledLink
+                to={link}
+                key={`navindex-${index}`}
+                className={`${
+                  this.props.selectedCategory === title ? "active" : ""
+                }`}
+                onClick={() => this.props.changeCategory(title)}
+              >
+                <TabContainer
+                  className={`${
+                    this.props.selectedCategory === title ? "active" : ""
+                  }`}
+                >
+                  {title}
+                </TabContainer>
               </StyledLink>
             ))}
           </TabContent>
           <Image src="vectors/BrandIcon.svg" alt="" />
           <DropDownContainer>
             <div>
-              <Image src="/vectors/Group1.svg" />
+              <Image
+                src="/vectors/Group1.svg"
+                onClick={this.handleCurrencyDropDown}
+              />
             </div>
             <div>
               <Image src="/vectors/Vector.svg" onClick={this.handleClick} />
@@ -183,7 +215,23 @@ export default class Nav extends React.Component {
             </DropDownWrapper>
           </DropDown>
         )}
+
+        {this.state.currencyDropDown && <DropDown>i love coding</DropDown>}
       </>
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    categories: state.categories,
+    selectedCategory: state.selectedCategory,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCategories: (item) => dispatch(selectedCategories(item)),
+    changeCategory: (data) => dispatch(changeCategories(data)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

@@ -4,6 +4,8 @@ export const NavWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 80px;
+  padding-left: 1rem;
+  padding-right: 1rem;
 `;
 export const TabContent = styled.div`
   display: flex;
@@ -15,11 +17,19 @@ export const TabContainer = styled.p`
   padding-right: 1rem;
   margin-bottom: 25px;
   color: ${(props) => props.color || "black"};
+
+  &.active {
+    border-bottom: "green";
+  }
 `;
 export const StyledLink = styled.div`
   text-decoration: none;
-  border-bottom: 1px solid ${(props) => props.color || "black"};
+  border-bottom: 1px solid transparent;
   margin-right: 8px;
+
+  &.active {
+    border-bottom: 1px solid #5ece7b;
+  }
 `;
 export const Image = styled.img`
   cursor: pointer;
