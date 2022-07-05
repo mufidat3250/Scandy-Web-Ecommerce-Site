@@ -1,4 +1,9 @@
-import { ALLCATEGORIES, SELECTEDCATEGORIES } from "../types";
+import {
+  ALLCATEGORIES,
+  SELECTEDCATEGORIES,
+  SETCURRENCY,
+  ALLCURRENCY,
+} from "../types";
 export const selectedCategories = (data) => {
   console.log(data);
   return {
@@ -8,9 +13,22 @@ export const selectedCategories = (data) => {
 };
 
 export const changeCategories = (data) => {
-    console.log(data);
-    return {
-      type: SELECTEDCATEGORIES,
-      payload: data,
-    };
-  }
+  console.log(data);
+  return {
+    type: SELECTEDCATEGORIES,
+    payload: data,
+  };
+};
+
+export const selectCurency = () => {
+  return {
+    type: SETCURRENCY,
+  };
+};
+
+export const allCurrency = (data) => {
+  return {
+    type: ALLCURRENCY,
+    payload: data,
+  };
+};

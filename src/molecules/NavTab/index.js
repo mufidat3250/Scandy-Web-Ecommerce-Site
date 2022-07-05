@@ -21,9 +21,13 @@ import {
 import Button from "../../atom/Button";
 import { connect } from "react-redux";
 import {
+  allCurrency,
   changeCategories,
+  selectCurency,
   selectedCategories,
 } from "../../store/reducers/actions";
+import CurrencyDropDown from "../CurrencyDropDown";
+
 let navTab = [
   {
     title: "Women",
@@ -65,6 +69,21 @@ const cartitem = [
     image: "/images/dropDownImg.png",
   },
 ];
+
+const currency = [
+  {
+    sign: "$",
+    type: "USD",
+  },
+  {
+    sign: "E",
+    type: "EUR",
+  },
+  {
+    sign: "j",
+    type: "JPY",
+  },
+];
 class Nav extends React.Component {
   constructor(props) {
     super(props);
@@ -76,7 +95,6 @@ class Nav extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleDropDown = this.handleDropDown.bind(this);
-    this.handleCurrencyDropDown = this.handleCurrencyDropDown.bind(this);
   }
   handleClick() {
     this.setState((state) => {
@@ -98,16 +116,20 @@ class Nav extends React.Component {
     });
   }
 
-  handleCurrencyDropDown() {
-    this.state(() => {});
-  }
-
   componentDidMount() {
     this.props.getCategories(navTab);
+    this.props.getAllCurrency(currency);
   }
 
   render() {
     console.log(this.props);
+    const currencyUpdate = this.props.allCurrency.flat().map((currency) => (
+      <div className="currency-container">
+        <span>{currency.sign}</span>
+        <span>{currency.type}</span>
+      </div>
+    ));
+
     return (
       <>
         {this.state.overlay && <Overlay />}
@@ -137,7 +159,10 @@ class Nav extends React.Component {
             <div>
               <Image
                 src="/vectors/Group1.svg"
-                onClick={this.handleCurrencyDropDown}
+                onClick={() => {
+                  console.log("i am clicked");
+                  this.props.getCurrency();
+                }}
               />
             </div>
             <div>
@@ -215,8 +240,9 @@ class Nav extends React.Component {
             </DropDownWrapper>
           </DropDown>
         )}
-
-        {this.state.currencyDropDown && <DropDown>i love coding</DropDown>}
+        {this.props.selectCurency && (
+          <CurrencyDropDown>{currencyUpdate}</CurrencyDropDown>
+        )}
       </>
     );
   }
@@ -225,6 +251,8 @@ const mapStateToProps = (state) => {
   return {
     categories: state.categories,
     selectedCategory: state.selectedCategory,
+    selectCurency: state.setCurency,
+    allCurrency: state.allCurrency,
   };
 };
 
@@ -232,6 +260,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getCategories: (item) => dispatch(selectedCategories(item)),
     changeCategory: (data) => dispatch(changeCategories(data)),
+    getCurrency: () => dispatch(selectCurency()),
+    getAllCurrency: (data) => dispatch(allCurrency(data)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Nav);
